@@ -11,6 +11,7 @@
             --brand: #0f172a; 
             --slate: #64748b;
             --bg: #f8fafc;
+            --accent: #3b82f6;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,6 +43,7 @@
             font-weight: 600;
             font-size: 0.8rem;
             color: var(--slate);
+            transition: 0.3s;
         }
 
         .tab.active { background: white; color: var(--brand); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
@@ -49,7 +51,7 @@
         .section { display: none; }
         .section.active { display: block; animation: fadeIn 0.3s ease; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
         .tasa-display {
             background: #f1f5f9;
@@ -67,6 +69,7 @@
         .tasa-label { font-size: 0.65rem; color: var(--slate); font-weight: 700; text-transform: uppercase; }
 
         label { display: block; font-size: 0.65rem; font-weight: 800; margin-top: 12px; color: var(--slate); text-transform: uppercase; letter-spacing: 0.5px; }
+        
         input, textarea {
             width: 100%;
             padding: 12px;
@@ -75,6 +78,23 @@
             margin-top: 4px;
             font-family: inherit;
             font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Estilo dinámico para el área de autocompletado */
+        #ws-paste {
+            min-height: 80px;
+            max-height: 400px;
+            background: #fdfdfd;
+            border: 2px dashed #cbd5e1;
+            resize: none;
+            overflow-y: hidden; /* Oculta scroll mientras se expande */
         }
 
         .btn {
@@ -92,7 +112,7 @@
             transition: 0.2s;
         }
         .btn-brand { background: var(--brand); color: white; }
-        .btn-brand:hover { opacity: 0.9; }
+        .btn-brand:hover { opacity: 0.9; transform: translateY(-1px); }
         .btn-outline { background: transparent; border: 1px solid #e2e8f0; color: var(--slate); font-size: 0.75rem; }
 
         #ticket-canvas { display: none; }
@@ -100,6 +120,7 @@
             width: 100%;
             margin-top: 20px;
             display: none;
+            border-radius: 15px;
             filter: drop-shadow(0 15px 20px rgba(0,0,0,0.1));
         }
     </style>
@@ -137,8 +158,9 @@
     </div>
 
     <div id="ticket" class="section">
-        <textarea id="ws-paste" rows="4" placeholder="Pega el mensaje de Nueva Solicitud..."></textarea>
-        <button class="btn btn-outline" onclick="procesarPegado()"><i class="fas fa-magic"></i> Auto-completar</button>
+        <label>Pega aquí el mensaje de WhatsApp</label>
+        <textarea id="ws-paste" placeholder="Pega el mensaje de Nueva Solicitud..." oninput="autoExpand(this)"></textarea>
+        <button class="btn btn-outline" onclick="procesarPegado()"><i class="fas fa-magic"></i> Auto-completar Datos</button>
 
         <label>Beneficiario</label><input type="text" id="tick-nombre">
         <label>Cédula</label><input type="text" id="tick-cedula">
@@ -161,9 +183,18 @@
 <script>
     let tasaDia = 0, tasaDolar = 0;
 
+    // Función para expandir textarea automáticamente
+    function autoExpand(textarea) {
+        textarea.style.height = 'inherit';
+        const height = textarea.scrollHeight;
+        textarea.style.height = height + 'px';
+        if (height > 400) textarea.style.overflowY = 'auto';
+        else textarea.style.overflowY = 'hidden';
+    }
+
     function formatMoney(val) {
         if (!val || val === "") return "0,00";
-        let n = typeof val === 'string' ? parseFloat(val.replace(/[^\d.]/g, '')) : val;
+        let n = typeof val === 'string' ? parseFloat(val.replace(/[^\d.]/g, '').replace(',', '.')) : val;
         return n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
@@ -174,21 +205,19 @@
                 tasaDolar = data.tasaDolar;
                 document.getElementById('val-tasa-cop').innerText = tasaDia;
                 document.getElementById('val-tasa-bcv').innerText = tasaDolar;
-            });
+            }).catch(e => console.error("Error cargando tasas"));
     }
 
-    // MEJORA 1: Limpiar campos al borrar
+    // Lógica de Cotizador
     const cotInputs = ['cot-pesos', 'cot-bs', 'cot-usd'];
     cotInputs.forEach(id => {
         document.getElementById(id).addEventListener('input', (e) => {
-            const rawVal = e.target.value;
-            
-            if (rawVal === "" || rawVal === null) {
+            const val = parseFloat(e.target.value) || 0;
+            if (e.target.value === "") {
                 cotInputs.forEach(inputId => document.getElementById(inputId).value = "");
                 return;
             }
 
-            const val = parseFloat(rawVal) || 0;
             if (id === 'cot-pesos') {
                 const bs = val / tasaDia;
                 document.getElementById('cot-bs').value = bs.toFixed(2);
@@ -205,13 +234,16 @@
     });
 
     function compartirCotizacion() {
+        const p = document.getElementById('cot-pesos').value;
+        const b = document.getElementById('cot-bs').value;
+        const u = document.getElementById('cot-usd').value;
         const msj = `*COTIZACIÓN NAGUARAEGIROS*%0A%0A` +
-                    `Envías: *${formatMoney(document.getElementById('cot-pesos').value)} COP*%0A` +
-                    `Recibes: *${formatMoney(document.getElementById('cot-bs').value)} Bs*%0A` +
-                    `Equivalente: *${formatMoney(document.getElementById('cot-usd').value)} USD*%0A%0A` +
+                    `Envías: *${formatMoney(p)} COP*%0A` +
+                    `Recibes: *${formatMoney(b)} Bs*%0A` +
+                    `Equivalente: *${formatMoney(u)} USD*%0A%0A` +
                     `Tasa COP: *${tasaDia} Bs/COP*%0A` +
                     `Dolar Tasa BCV: *${tasaDolar} Bs/USD*%0A%0A` +
-                    `_Esta cotización es válida por los próximos 60 minutos._`;
+                    `_Esta cotización es válida por los próximos 60 minutos.._`;
         window.open(`https://wa.me/?text=${msj}`, '_blank');
     }
 
@@ -222,16 +254,17 @@
         event.currentTarget.classList.add('active');
     }
 
-    // MEJORA 2: Autocompletado de Montos y Datos Beneficiario
+    // Lógica de Autocompletado mejorada
     function procesarPegado() {
-        const raw = document.getElementById('ws-paste').value;
+        const area = document.getElementById('ws-paste');
+        const raw = area.value;
+        if(!raw) return;
         
-        // Expresiones regulares para capturar números después de "Envía:" y "Recibe:"
-        const enviaMatch = raw.match(/Envía:\s*([\d.]+)/i);
-        const recibeMatch = raw.match(/Recibe:\s*([\d.]+)/i);
+        const enviaMatch = raw.match(/Envía:\s*([\d,.]+)/i);
+        const recibeMatch = raw.match(/Recibe:\s*([\d,.]+)/i);
         
-        document.getElementById('tick-cop').value = enviaMatch ? enviaMatch[1] : "";
-        document.getElementById('tick-bs').value = recibeMatch ? recibeMatch[1] : "";
+        if (enviaMatch) document.getElementById('tick-cop').value = enviaMatch[1].trim();
+        if (recibeMatch) document.getElementById('tick-bs').value = recibeMatch[1].trim();
 
         const lines = raw.split('\n').map(l => l.trim()).filter(l => l !== "");
         let separatorIndexes = [];
@@ -243,12 +276,14 @@
             document.getElementById('tick-cedula').value = lines[dataStart+1] || "";
             document.getElementById('tick-cuenta').value = lines[dataStart+2] || "";
             
-            // Buscar línea que contenga "Pago Móvil"
-            const pmLine = lines.find(line => line.toLowerCase().includes("pago móvil"));
+            const pmLine = lines.find(l => l.toLowerCase().includes('pago móvil'));
             if (pmLine) {
-                document.getElementById('tick-pm').value = pmLine.replace(/Pago Móvil:\s*/i, "");
+                document.getElementById('tick-pm').value = pmLine.split(':')[1]?.trim() || pmLine;
             }
         }
+        
+        // Opcional: resetear altura tras procesar
+        area.style.height = '80px';
     }
 
     function generarTicket() {
@@ -295,7 +330,7 @@
             ctx.fillText(label, 50, y);
             ctx.fillStyle = "#0f172a";
             ctx.font = "600 18px 'Inter'";
-            ctx.fillText(value.toUpperCase() || "---", 50, y + 25);
+            ctx.fillText((value || "---").toUpperCase(), 50, y + 25);
             y += 75;
         };
 
@@ -337,6 +372,7 @@
 
     function drawZigZag(ctx, y, size, dir) {
         ctx.beginPath();
+        ctx.fillStyle = "#f8fafc";
         if(dir === "up") {
             ctx.moveTo(0,0);
             for(let x=0; x<=500; x+=10) { ctx.lineTo(x+5, size); ctx.lineTo(x+10, 0); }
@@ -349,6 +385,7 @@
 
     function drawDividerLine(ctx, x, y, w) {
         ctx.strokeStyle = "#f1f5f9";
+        ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x+w, y); ctx.stroke();
     }
 
@@ -359,9 +396,15 @@
     }
 
     async function compartirImagen() {
-        const blob = await (await fetch(document.getElementById('ticket-result').src)).blob();
-        const file = new File([blob], 'ticket.png', {type: 'image/png'});
-        navigator.share({files: [file], title: 'Comprobante NaguaraeGiros'});
+        try {
+            const blob = await (await fetch(document.getElementById('ticket-result').src)).blob();
+            const file = new File([blob], 'ticket.png', {type: 'image/png'});
+            if (navigator.share) {
+                await navigator.share({files: [file], title: 'Comprobante NaguaraeGiros'});
+            } else {
+                alert("Tu navegador no soporta compartir archivos. Descarga la imagen manualmente.");
+            }
+        } catch (e) { console.error(e); }
     }
 
     window.onload = cargarTasas;
