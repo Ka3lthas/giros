@@ -182,6 +182,14 @@
     const cotInputs = ['cot-pesos', 'cot-bs', 'cot-usd'];
     cotInputs.forEach(id => {
         document.getElementById(id).addEventListener('input', (e) => {
+            // CORRECCIÓN 1: Si el campo se borra por completo, vaciar todos los campos
+            if (e.target.value.trim() === '') {
+                document.getElementById('cot-pesos').value = '';
+                document.getElementById('cot-bs').value = '';
+                document.getElementById('cot-usd').value = '';
+                return;
+            }
+
             const val = parseFloat(e.target.value) || 0;
             if (id === 'cot-pesos') {
                 const bs = val / tasaDia;
@@ -219,8 +227,10 @@
     function procesarPegado() {
         const raw = document.getElementById('ws-paste').value;
         const lines = raw.split('\n').map(l => l.trim()).filter(l => l !== "");
-        const enviaMatch = raw.match(/Envía:\s*([\d.]+)/i);
-        const recibeMatch = raw.match(/Recibe:\s*([\d.]+)/i);
+        
+        // CORRECCIÓN 2: Regex mejorado para capturar los montos sin importar formato extra
+        const enviaMatch = raw.match(/Env[ií]a\s*:\s*([0-9.,]+)/i);
+        const recibeMatch = raw.match(/Recibe\s*:\s*([0-9.,]+)/i);
         
         document.getElementById('tick-cop').value = enviaMatch ? enviaMatch[1] : "";
         document.getElementById('tick-bs').value = recibeMatch ? recibeMatch[1] : "";
