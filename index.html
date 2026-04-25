@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>NaguaraeGiros | Admin Elite Final</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -77,7 +77,15 @@
         .tasa-val { display: block; font-weight: 800; font-size: 1.1rem; color: var(--brand); }
         .tasa-label { font-size: 0.65rem; color: var(--slate); font-weight: 700; text-transform: uppercase; }
 
-        label { display: block; font-size: 0.65rem; font-weight: 800; margin-top: 12px; color: var(--slate); text-transform: uppercase; letter-spacing: 0.5px; }
+        label {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 800;
+            margin-top: 12px;
+            color: var(--slate);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
         input, textarea, select {
             width: 100%;
@@ -88,6 +96,7 @@
             font-family: inherit;
             font-size: 0.95rem;
             transition: 0.2s;
+            background: #fff;
         }
 
         input:focus, textarea:focus, select:focus {
@@ -132,22 +141,119 @@
             filter: drop-shadow(0 15px 20px rgba(0,0,0,0.1));
         }
 
-        .dashboard-header { display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
+        .dashboard-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
         .dashboard-header > * { flex: 1; min-width: 120px; }
-        .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        .kpi-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 15px; text-align: center; }
-        .kpi-title { font-size: 0.65rem; color: var(--slate); font-weight: 700; text-transform: uppercase; }
-        .kpi-value { font-size: 1.1rem; font-weight: 800; color: var(--brand); margin-top: 5px; }
-        .chart-container { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 15px; margin-bottom: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .canvas-wrapper { position: relative; width: 100%; text-align: center; }
-        .meta-top { font-size: 0.65rem; color: var(--slate); font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
-        .meta-text { font-size: 0.7rem; color: var(--slate); margin-top: 8px; font-weight: 600; line-height: 1.5; }
-        .meta-text span { color: var(--brand); font-weight: 800; display: block; font-size: 0.8rem; }
 
-        .table-wrapper { overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px; margin-top: 10px; background: white; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.75rem; text-align: left; }
-        th { background: #f1f5f9; padding: 10px; color: var(--slate); font-weight: 700; }
-        td { padding: 10px; border-top: 1px solid #e2e8f0; vertical-align: middle; }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .kpi-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        .kpi-title {
+            font-size: 0.65rem;
+            color: var(--slate);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .kpi-value {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--brand);
+            margin-top: 5px;
+        }
+
+        .chart-container {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            overflow: hidden;
+        }
+
+        .canvas-wrapper {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            background: transparent;
+            overflow: hidden;
+            box-shadow: none;
+            border: none;
+        }
+
+        .canvas-wrapper canvas {
+            width: 100%;
+            max-width: 260px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            background: transparent;
+        }
+
+        .meta-top {
+            font-size: 0.65rem;
+            color: var(--slate);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 6px;
+        }
+
+        .meta-text {
+            font-size: 0.7rem;
+            color: var(--slate);
+            margin-top: 8px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .meta-text span {
+            color: var(--brand);
+            font-weight: 800;
+            display: block;
+            font-size: 0.8rem;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-top: 10px;
+            background: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.75rem;
+            text-align: left;
+        }
+        th {
+            background: #f1f5f9;
+            padding: 10px;
+            color: var(--slate);
+            font-weight: 700;
+        }
+        td {
+            padding: 10px;
+            border-top: 1px solid #e2e8f0;
+            vertical-align: middle;
+        }
 
         .btn-view {
             background: #eff6ff;
@@ -316,12 +422,12 @@
         <div class="chart-container">
             <div class="canvas-wrapper">
                 <div id="texto-periodo-diaria" class="meta-top"></div>
-                <canvas id="chart-diaria"></canvas>
+                <canvas id="chart-diaria" width="260" height="260"></canvas>
                 <div id="texto-meta-diaria" class="meta-text"></div>
             </div>
             <div class="canvas-wrapper">
                 <div id="texto-periodo-mensual" class="meta-top"></div>
-                <canvas id="chart-mensual"></canvas>
+                <canvas id="chart-mensual" width="260" height="260"></canvas>
                 <div id="texto-meta-mensual" class="meta-text"></div>
             </div>
         </div>
@@ -384,7 +490,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <script>
@@ -393,16 +498,13 @@
     const META_DIARIA = 500000;
     const META_MENSUAL = 15000000;
     let db = JSON.parse(localStorage.getItem('naguara_erp') || '[]');
-    let chartDiaria, chartMensual;
-
     let currentTicketDraft = null;
 
     function autoExpand(textarea) {
         textarea.style.height = 'inherit';
         const height = textarea.scrollHeight;
         textarea.style.height = height + 'px';
-        if (height > 400) textarea.style.overflowY = 'auto';
-        else textarea.style.overflowY = 'hidden';
+        textarea.style.overflowY = height > 400 ? 'auto' : 'hidden';
     }
 
     function parseFlexibleNumber(val) {
@@ -522,6 +624,7 @@
             });
 
         inicializarContabilidad();
+        actualizarDashboard();
     }
 
     const cotInputs = ['cot-pesos', 'cot-bs', 'cot-usd'];
@@ -578,9 +681,64 @@
         const tabMap = { 'cotizador': 'tab-cotizador', 'ticket': 'tab-ticket', 'contabilidad': 'tab-contabilidad' };
         document.getElementById(tabMap[id]).classList.add('active');
 
-        if (id === 'contabilidad') {
-            actualizarDashboard();
+        if (id === 'contabilidad') actualizarDashboard();
+    }
+
+    function stripPastedLine(line) {
+        return String(line || '')
+            .replace(/[\u200B-\u200D\uFEFF]/g, '')
+            .replace(/[*_`]/g, '')
+            .replace(/[–—]/g, '-')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function normalizeKey(str) {
+        return stripPastedLine(str)
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^a-zA-Z0-9]+/g, '')
+            .toLowerCase();
+    }
+
+    function cleanCapturedValue(value) {
+        return String(value || '')
+            .replace(/^[\s:;,\-–—•|]+/, '')
+            .replace(/[\s:;,\-–—•|]+$/, '')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function extractFieldValue(raw, labels) {
+        const lines = String(raw || '').replace(/\r/g, '').split('\n');
+        const labelKeys = labels.map(normalizeKey);
+
+        for (const lineRaw of lines) {
+            const line = stripPastedLine(lineRaw);
+            if (!line) continue;
+            if (/^-+$/.test(line.replace(/\s/g, ''))) continue;
+
+            const key = normalizeKey(line);
+            for (const labelKey of labelKeys) {
+                if (key.startsWith(labelKey)) {
+                    const idx = line.indexOf(':');
+                    const value = idx >= 0 ? line.slice(idx + 1) : line.slice(lineRaw.toLowerCase().indexOf(labels[0]));
+                    return cleanCapturedValue(value);
+                }
+            }
         }
+        return '';
+    }
+
+    function cleanMoneyInput(value) {
+        return String(value || '').replace(/[^\d.,-]/g, '').trim();
+    }
+
+    function cleanPlainTextValue(value) {
+        return String(value || '')
+            .replace(/^[\s:;,\-–—•|]+/, '')
+            .replace(/\s+/g, ' ')
+            .trim();
     }
 
     function procesarPegado() {
@@ -589,29 +747,24 @@
         if (!raw) return;
 
         raw = raw.replace(/\r/g, '');
-        raw = raw.replace(/[\*_]/g, '');
 
-        const normalizarLinea = (label) => {
-            const regex = new RegExp(`${label}\s*:?\s*([^\n]+)`, 'i');
-            const match = raw.match(regex);
-            return match ? match[1].trim() : '';
-        };
+        const envia = extractFieldValue(raw, ['Envía', 'Envia']);
+        const recibe = extractFieldValue(raw, ['Recibe']);
+        const tasa = extractFieldValue(raw, ['Tasa usada', 'Tasa']);
+        const beneficiario = extractFieldValue(raw, ['Beneficiario']);
+        const cedula = extractFieldValue(raw, ['Cédula', 'Cedula']);
+        const cuenta = extractFieldValue(raw, ['Cuenta']);
+        const telefono = extractFieldValue(raw, ['Teléfono', 'Telefono']);
 
-        const envia = normalizarLinea('Env[ií]a');
-        const recibe = normalizarLinea('Recibe');
-        const tasa = normalizarLinea('Tasa usada');
-        const beneficiario = normalizarLinea('Beneficiario');
-        const cedula = normalizarLinea('C[eé]dula');
-        const cuenta = normalizarLinea('Cuenta');
-        const telefono = normalizarLinea('Tel[eé]fono');
+        if (envia) document.getElementById('tick-cop').value = cleanMoneyInput(envia);
+        if (recibe) document.getElementById('tick-bs').value = cleanMoneyInput(recibe);
 
-        if (envia) document.getElementById('tick-cop').value = envia.replace(/[^\d.,-]/g, '').trim();
-        if (recibe) document.getElementById('tick-bs').value = recibe.replace(/[^\d.,-]/g, '').trim();
-
-        if (beneficiario) document.getElementById('tick-nombre').value = beneficiario;
+        if (beneficiario) document.getElementById('tick-nombre').value = cleanPlainTextValue(beneficiario).replace(/^[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9]+/, '');
         if (cedula) document.getElementById('tick-cedula').value = cedula.replace(/[^\d]/g, '');
-        if (cuenta) document.getElementById('tick-cuenta').value = cuenta.replace(/^[:\s]+/, '').trim();
-        if (telefono) document.getElementById('tick-pm').value = telefono.replace(/[^\d]/g, '');
+        if (cuenta) document.getElementById('tick-cuenta').value = cuenta.replace(/[^\d]/g, '');
+        if (telefono && !/^(n\/?a|na|none|null|sin dato)$/i.test(telefono.trim())) {
+            document.getElementById('tick-pm').value = telefono.replace(/[^\d]/g, '');
+        }
 
         if (tasa && !document.getElementById('cot-bs').value) {
             const tasaNum = parseFlexibleNumber(tasa);
@@ -627,9 +780,11 @@
         const copText = document.getElementById('tick-cop').value;
         const bsText = document.getElementById('tick-bs').value;
 
-        const ref = refOverride || (currentTicketDraft && currentTicketDraft.source === 'draft' && !currentTicketDraft.committed)
-            ? (refOverride || currentTicketDraft.ref)
-            : makeReferenceFromStorage();
+        const ref = refOverride || (
+            currentTicketDraft && currentTicketDraft.source === 'draft' && !currentTicketDraft.committed
+                ? currentTicketDraft.ref
+                : makeReferenceFromStorage()
+        );
 
         return {
             ref,
@@ -645,6 +800,60 @@
         };
     }
 
+    function drawZigZag(ctx, dir) {
+        ctx.beginPath();
+        ctx.fillStyle = '#f8fafc';
+
+        if (dir === 'up') {
+            ctx.moveTo(0, 0);
+            for (let x = 0; x <= 500; x += 10) {
+                ctx.lineTo(x + 5, 15);
+                ctx.lineTo(x + 10, 0);
+            }
+        } else {
+            ctx.moveTo(0, 920);
+            for (let x = 0; x <= 500; x += 10) {
+                ctx.lineTo(x + 5, 905);
+                ctx.lineTo(x + 10, 920);
+            }
+        }
+
+        ctx.fill();
+    }
+
+    function drawDividerLine(ctx, x, y, w) {
+        ctx.strokeStyle = '#f1f5f9';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + w, y);
+        ctx.stroke();
+    }
+
+    function roundedRectPath(ctx, x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+        return ctx;
+    }
+
+    function drawRoundRect(ctx, x, y, w, h, r, fill = true) {
+        if (typeof ctx.roundRect === 'function') {
+            ctx.beginPath();
+            ctx.roundRect(x, y, w, h, r);
+            if (fill) ctx.fill();
+            else ctx.stroke();
+            return;
+        }
+        roundedRectPath(ctx, x, y, w, h, r);
+        if (fill) ctx.fill();
+        else ctx.stroke();
+    }
+
     function renderTicket(ticketData) {
         const canvas = document.getElementById('ticket-canvas');
         const ctx = canvas.getContext('2d');
@@ -652,9 +861,8 @@
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = '#f8fafc';
-        drawZigZag(ctx, 0, 15, 'up');
-        drawZigZag(ctx, 920 - 15, 15, 'down');
+        drawZigZag(ctx, 'up');
+        drawZigZag(ctx, 'down');
 
         ctx.textAlign = 'center';
         ctx.fillStyle = '#0f172a';
@@ -663,9 +871,7 @@
 
         ctx.font = "600 14px 'Inter'";
         ctx.fillStyle = '#94a3b8';
-        ctx.letterSpacing = '2px';
         ctx.fillText('COMPROBANTE DE OPERACIÓN', canvas.width / 2, 125);
-        ctx.letterSpacing = '0px';
 
         ctx.textAlign = 'left';
         ctx.fillStyle = '#0f172a';
@@ -698,7 +904,7 @@
         addField('PAGO MÓVIL', ticketData.pm);
 
         ctx.fillStyle = '#f1f5f9';
-        ctx.roundRect(40, y - 10, 420, 140, 12).fill();
+        drawRoundRect(ctx, 40, y - 10, 420, 140, 12, true);
 
         ctx.textAlign = 'center';
         ctx.fillStyle = '#475569';
@@ -729,7 +935,6 @@
 
     function generarTicket() {
         const refActualInput = document.getElementById('tick-nombre').getAttribute('data-ref-active');
-
         let ticketData;
 
         if (refActualInput) {
@@ -766,47 +971,118 @@
 
         const mesActual = getLocalMonthKey();
         if (mesesUnicos.includes(mesActual)) selectorMes.value = mesActual;
-
         selectorDia.value = getLocalDateKey();
-
-        const configBase = {
-            type: 'doughnut',
-            data: { datasets: [{ data: [0, 1], backgroundColor: ['#64748b', '#f1f5f9'], borderWidth: 0 }] },
-            options: {
-                responsive: true,
-                cutout: '75%',
-                rotation: 270,
-                circumference: 180,
-                plugins: { tooltip: { enabled: false }, title: { display: true, font: { size: 14 } } }
-            }
-        };
-
-        chartDiaria = new Chart(document.getElementById('chart-diaria').getContext('2d'), JSON.parse(JSON.stringify(configBase)));
-        chartMensual = new Chart(document.getElementById('chart-mensual').getContext('2d'), JSON.parse(JSON.stringify(configBase)));
     }
 
     function obtenerColorSalud(pct) {
         if (pct < 40) return '#ef4444';
         if (pct < 80) return '#eab308';
-        return '#10b981';
-    }
-
-    function obtenerEstadoMeta(current, total) {
-        const pct = total > 0 ? (current / total) * 100 : 0;
-        if (pct >= 100) return { etiqueta: 'Meta cumplida', color: '#10b981', pct: 100 };
-        if (pct >= 80) return { etiqueta: 'Muy cerca', color: '#eab308', pct };
-        return { etiqueta: 'En progreso', color: '#ef4444', pct };
+        if (pct < 100) return '#10b981';
+        if (pct < 200) return '#60a5fa';
+        if (pct < 300) return '#3b82f6';
+        if (pct < 400) return '#2563eb';
+        return '#1d4ed8';
     }
 
     function calcularResumenMeta(current, total) {
         const faltante = Math.max(0, total - current);
+        const exceso = Math.max(0, current - total);
         const pct = total > 0 ? (current / total) * 100 : 0;
+
         return {
             llevas: current,
             falta: faltante,
+            exceso,
             porcentaje: pct,
             porcentajeTexto: `${pct.toFixed(1)}%`
         };
+    }
+
+    function hexToRgb(hex) {
+        const clean = String(hex).replace('#', '');
+        const bigint = parseInt(clean, 16);
+        return {
+            r: (bigint >> 16) & 255,
+            g: (bigint >> 8) & 255,
+            b: bigint & 255
+        };
+    }
+
+    function rgbToRgba(rgb, alpha) {
+        return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+    }
+
+    function formatPct(pct) {
+        return `${pct.toFixed(1)}%`;
+    }
+
+    function drawGaugeRing(ctx, cx, cy, radius, pct, color, trackColor) {
+        ctx.save();
+        ctx.lineCap = 'round';
+        ctx.lineWidth = 14;
+
+        ctx.beginPath();
+        ctx.strokeStyle = trackColor;
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.stroke();
+
+        const safePct = Math.max(0, Math.min(pct, 100));
+        if (safePct > 0) {
+            ctx.beginPath();
+            ctx.strokeStyle = color;
+            const end = -Math.PI / 2 + (Math.PI * 2 * safePct / 100);
+            ctx.arc(cx, cy, radius, -Math.PI / 2, end, false);
+            ctx.stroke();
+        }
+
+        ctx.restore();
+    }
+
+    function renderGaugeCanvas(canvas, current, total) {
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width;
+        const h = canvas.height;
+        const cx = w / 2;
+        const cy = h / 2;
+        const pct = total > 0 ? (current / total) * 100 : 0;
+
+        const color = obtenerColorSalud(pct);
+        const trackColor = '#dff3ea';
+
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, w, h);
+
+        const radius = Math.min(w, h) * 0.33;
+        drawGaugeRing(ctx, cx, cy, radius, pct, color, trackColor);
+
+        const percentText = formatPct(pct);
+        const isOver = pct >= 100;
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#0f172a';
+        ctx.font = "700 34px Inter, sans-serif";
+        ctx.fillText(percentText, cx, cy + 8);
+
+        ctx.fillStyle = '#64748b';
+        ctx.font = "700 11px Inter, sans-serif";
+        ctx.fillText('CUMPLIMIENTO', cx, cy + 32);
+
+        if (isOver) {
+            ctx.fillStyle = rgbToRgba(hexToRgb(color), 0.12);
+            if (typeof ctx.roundRect === 'function') {
+                ctx.beginPath();
+                ctx.roundRect(cx - 46, cy - 52, 92, 20, 10);
+                ctx.fill();
+            } else {
+                roundedRectPath(ctx, cx - 46, cy - 52, 92, 20, 10);
+                ctx.fill();
+            }
+
+            ctx.fillStyle = color;
+            ctx.font = "700 10px Inter, sans-serif";
+            ctx.fillText('SOBRE META', cx, cy - 38);
+        }
     }
 
     function actualizarDashboard() {
@@ -823,7 +1099,7 @@
             const diaT = (new Date(fechaObj - offset)).toISOString().split('T')[0];
 
             if (mesT === mesSeleccionado || mesSeleccionado === 'all') copMes += parseFlexibleNumber(t.cop);
-            if (diaT === diaSeleccionado && diaSeleccionado !== '') copDia += parseFlexibleNumber(t.cop);
+            if (diaSeleccionado && diaT === diaSeleccionado) copDia += parseFlexibleNumber(t.cop);
 
             const cliente = String(t.cliente || '').toLowerCase();
             const ref = String(t.ref || '').toLowerCase();
@@ -850,34 +1126,27 @@
         document.getElementById('kpi-ganancia').innerText = formatMoney(montoKpi * 0.10);
 
         const resDia = calcularResumenMeta(copDia, META_DIARIA);
-        chartDiaria.data.datasets[0].data = [copDia, Math.max(0, META_DIARIA - copDia)];
-        chartDiaria.data.datasets[0].backgroundColor = [obtenerColorSalud(resDia.porcentaje), '#f1f5f9'];
-        chartDiaria.update();
         document.getElementById('texto-periodo-diaria').innerHTML = `DÍA EN TRABAJO: <span>${diaSeleccionado || '--'}</span>`;
-        document.getElementById('texto-meta-diaria').innerHTML =
-            `Llevas: <span>${formatMoney(copDia)}</span>
-             Faltan: <span>${formatMoney(resDia.falta)}</span>
-             Cumplimiento: <span>${resDia.porcentajeTexto}</span>`;
+        document.getElementById('texto-meta-diaria').innerHTML = resDia.exceso > 0
+            ? `Llevas: <span>${formatMoney(copDia)}</span>
+               Exceso: <span>${formatMoney(resDia.exceso)}</span>`
+            : `Llevas: <span>${formatMoney(copDia)}</span>
+               Faltan: <span>${formatMoney(resDia.falta)}</span>`;
+        renderGaugeCanvas(document.getElementById('chart-diaria'), copDia, META_DIARIA);
 
         const resMes = calcularResumenMeta(copMes, META_MENSUAL);
-        chartMensual.data.datasets[0].data = [copMes, Math.max(0, META_MENSUAL - copMes)];
-        chartMensual.data.datasets[0].backgroundColor = [obtenerColorSalud(resMes.porcentaje), '#f1f5f9'];
-        chartMensual.update();
         document.getElementById('texto-periodo-mensual').innerHTML = `MES EN TRABAJO: <span>${formatMonthLabel(mesSeleccionado)}</span>`;
-        document.getElementById('texto-meta-mensual').innerHTML =
-            `Llevas: <span>${formatMoney(copMes)}</span>
-             Faltan: <span>${formatMoney(resMes.falta)}</span>
-             Cumplimiento: <span>${resMes.porcentajeTexto}</span>`;
+        document.getElementById('texto-meta-mensual').innerHTML = resMes.exceso > 0
+            ? `Llevas: <span>${formatMoney(copMes)}</span>
+               Exceso: <span>${formatMoney(resMes.exceso)}</span>`
+            : `Llevas: <span>${formatMoney(copMes)}</span>
+               Faltan: <span>${formatMoney(resMes.falta)}</span>`;
+        renderGaugeCanvas(document.getElementById('chart-mensual'), copMes, META_MENSUAL);
     }
 
     function guardarTicketCompartido() {
-        if (!currentTicketDraft || currentTicketDraft.source === 'history') {
-            return currentTicketDraft;
-        }
-
-        if (currentTicketDraft.committed) {
-            return currentTicketDraft;
-        }
+        if (!currentTicketDraft || currentTicketDraft.source === 'history') return currentTicketDraft;
+        if (currentTicketDraft.committed) return currentTicketDraft;
 
         const exists = db.some(t => t.ref === currentTicketDraft.ref);
         if (!exists) {
@@ -948,11 +1217,101 @@
         }
     }
 
+    function drawArcPdf(doc, cx, cy, r, startAngle, endAngle, colorHex, lineWidth) {
+        const rgb = hexToRgb(colorHex);
+        doc.setDrawColor(rgb.r, rgb.g, rgb.b);
+        doc.setLineWidth(lineWidth);
+
+        const sweep = endAngle - startAngle;
+        const segments = Math.max(24, Math.ceil(Math.abs(sweep) / (Math.PI / 24)));
+        let prevX = cx + Math.cos(startAngle) * r;
+        let prevY = cy + Math.sin(startAngle) * r;
+
+        for (let i = 1; i <= segments; i++) {
+            const a = startAngle + (sweep * i / segments);
+            const x = cx + Math.cos(a) * r;
+            const y = cy + Math.sin(a) * r;
+            doc.line(prevX, prevY, x, y);
+            prevX = x;
+            prevY = y;
+        }
+    }
+
+    function drawGaugePdf(doc, x, y, w, h, title, current, total, periodLabel) {
+        const pct = total > 0 ? (current / total) * 100 : 0;
+        const color = obtenerColorSalud(pct);
+        const centerX = x + w / 2;
+        const centerY = y + 38;
+        const radius = 18.5;
+        const trackColor = '#dff3ea';
+
+        doc.setDrawColor(255, 255, 255);
+        doc.setFillColor(255, 255, 255);
+        doc.roundedRect(x, y, w, h, 4, 4, 'F');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(8.2);
+        doc.setTextColor(100, 116, 139);
+        doc.text(title, x + 4, y + 6);
+
+        doc.setFontSize(8);
+        doc.setTextColor(15, 23, 42);
+        doc.text(periodLabel, x + 4, y + 11);
+
+        drawArcPdf(doc, centerX, centerY, radius, 0, Math.PI * 2 - 0.02, trackColor, 4.2);
+
+        const safePct = Math.max(0, Math.min(pct, 100));
+        if (safePct > 0) {
+            drawArcPdf(doc, centerX, centerY, radius, -Math.PI / 2, -Math.PI / 2 + (Math.PI * 2 * safePct / 100), color, 4.2);
+        }
+
+        doc.setTextColor(15, 23, 42);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(16);
+        const pctText = formatPct(pct);
+        const pctWidth = doc.getTextWidth(pctText);
+        doc.text(pctText, centerX - (pctWidth / 2), centerY + 3);
+
+        doc.setFontSize(6.5);
+        doc.setTextColor(100, 116, 139);
+        const label = pct >= 100 ? 'SOBRE META' : 'CUMPLIMIENTO';
+        const labelWidth = doc.getTextWidth(label);
+        doc.text(label, centerX - (labelWidth / 2), centerY + 10);
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(7.2);
+
+        if (pct > 100) {
+            doc.setTextColor(100, 116, 139);
+            doc.text('Llevas:', x + 8, y + 59);
+            doc.setTextColor(15, 23, 42);
+            doc.text(formatMoney(current), x + 22, y + 59);
+
+            doc.setTextColor(100, 116, 139);
+            doc.text('Exceso:', x + 8, y + 66);
+            doc.setTextColor(15, 23, 42);
+            doc.text(formatMoney(Math.max(0, current - total)), x + 24, y + 66);
+        } else {
+            doc.setTextColor(100, 116, 139);
+            doc.text('Llevas:', x + 8, y + 59);
+            doc.setTextColor(15, 23, 42);
+            doc.text(formatMoney(current), x + 22, y + 59);
+
+            doc.setTextColor(100, 116, 139);
+            doc.text('Faltan:', x + 8, y + 66);
+            doc.setTextColor(15, 23, 42);
+            doc.text(formatMoney(Math.max(0, total - current)), x + 23, y + 66);
+        }
+    }
+
     function descargarPDF() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
         const mes = document.getElementById('filtro-mes').value;
         const dia = document.getElementById('filtro-dia').value;
+
+        doc.setFillColor(248, 250, 252);
+        doc.rect(0, 0, 210, 297, 'F');
 
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(18);
@@ -967,64 +1326,30 @@
 
         let copMes = 0, copDia = 0;
         db.forEach(t => {
-            if (mes === 'all' || (t.fechaCompleta || '').startsWith(mes)) copMes += parseFlexibleNumber(t.cop);
-            if ((t.fechaCompleta || '').startsWith(dia)) copDia += parseFlexibleNumber(t.cop);
+            const fechaObj = new Date(t.fechaCompleta);
+            const offset = fechaObj.getTimezoneOffset() * 60000;
+            const diaT = (new Date(fechaObj - offset)).toISOString().split('T')[0];
+            const mesT = (t.fechaCompleta || '').substring(0, 7);
+
+            if (mes === 'all' || mesT === mes) copMes += parseFlexibleNumber(t.cop);
+            if (dia && diaT === dia) copDia += parseFlexibleNumber(t.cop);
         });
 
-        const drawStatusCard = (x, y, w, h, label, current, total, periodLabel) => {
-            const pct = total > 0 ? Math.min((current / total) * 100, 100) : 0;
-            const faltante = Math.max(0, total - current);
-            const estado = obtenerEstadoMeta(current, total);
-            const barColor = estado.color;
-            const rgb = barColor === '#10b981' ? [16, 185, 129] : (barColor === '#eab308' ? [234, 179, 8] : [239, 68, 68]);
+        drawGaugePdf(doc, 14, 35, 88, 82, 'META DIARIA', copDia, META_DIARIA, `DÍA: ${dia || '--'}`);
+        drawGaugePdf(doc, 108, 35, 88, 82, 'META MENSUAL', copMes, META_MENSUAL, `MES: ${formatMonthLabel(mes)}`);
 
-            doc.setDrawColor(226, 232, 240);
-            doc.setFillColor(248, 250, 252);
-            doc.roundedRect(x, y, w, h, 3, 3, 'FD');
-
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(8);
-            doc.setTextColor(100, 116, 139);
-            doc.text(label, x + 4, y + 6);
-
-            doc.setFontSize(8);
-            doc.setTextColor(15, 23, 42);
-            doc.text(periodLabel, x + 4, y + 11);
-
-            doc.setFontSize(11);
-            doc.setTextColor(15, 23, 42);
-            doc.text(`${formatMoney(current)} COP`, x + 4, y + 18);
-
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(7);
-            doc.setTextColor(100, 116, 139);
-            doc.text(`Faltan: ${formatMoney(faltante)} COP`, x + 4, y + 24);
-            doc.text(`Cumplimiento: ${pct.toFixed(1)}%`, x + 4, y + 29);
-
-            doc.setFillColor(241, 245, 249);
-            doc.roundedRect(x + 4, y + h - 6, w - 8, 3, 1, 1, 'F');
-            doc.setFillColor(barColor);
-            doc.roundedRect(x + 4, y + h - 6, (w - 8) * (pct / 100), 3, 1, 1, 'F');
-
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(7);
-            doc.setTextColor(rgb[0], rgb[1], rgb[2]);
-            doc.text(`${pct.toFixed(1)}%`, x + w - 4, y + 6, { align: 'right' });
-        };
-
-        drawStatusCard(14, 35, 88, 44, 'META DIARIA', copDia, META_DIARIA, `DÍA: ${dia || '--'}`);
-        drawStatusCard(108, 35, 88, 44, 'META MENSUAL', copMes, META_MENSUAL, `MES: ${formatMonthLabel(mes)}`);
-
-        const tableData = db.filter(t => mes === 'all' || (t.fechaCompleta || '').startsWith(mes))
+        const tableData = db
+            .filter(t => mes === 'all' || (t.fechaCompleta || '').startsWith(mes))
             .map(t => [formatDateTime(t.fechaCompleta), t.ref, t.cliente, formatMoney(t.cop), formatMoney(t.ganancia)]);
 
         doc.autoTable({
-            startY: 88,
+            startY: 124,
             head: [['Fecha y hora', 'Ref', 'Cliente', 'Monto COP', 'Ganancia']],
             body: tableData,
             theme: 'grid',
             headStyles: { fillColor: [15, 23, 42], fontSize: 9 },
-            styles: { fontSize: 8 }
+            styles: { fontSize: 8, cellPadding: 2.2 },
+            margin: { left: 14, right: 14 }
         });
 
         doc.save(`Reporte_Naguara_${dia || mes}.pdf`);
@@ -1045,38 +1370,18 @@
         link.click();
     }
 
-    function drawZigZag(ctx, y, size, dir) {
-        ctx.beginPath();
-        ctx.fillStyle = '#f8fafc';
-        if (dir === 'up') {
-            ctx.moveTo(0, 0);
-            for (let x = 0; x <= 500; x += 10) { ctx.lineTo(x + 5, size); ctx.lineTo(x + 10, 0); }
-        } else {
-            ctx.moveTo(0, 920);
-            for (let x = 0; x <= 500; x += 10) { ctx.lineTo(x + 5, 920 - size); ctx.lineTo(x + 10, 920); }
-        }
-        ctx.fill();
+    if (!CanvasRenderingContext2D.prototype.roundRect) {
+        CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+            this.beginPath();
+            this.moveTo(x + r, y);
+            this.arcTo(x + w, y, x + w, y + h, r);
+            this.arcTo(x + w, y + h, x, y + h, r);
+            this.arcTo(x, y + h, x, y, r);
+            this.arcTo(x, y, x + w, y, r);
+            this.closePath();
+            return this;
+        };
     }
-
-    function drawDividerLine(ctx, x, y, w) {
-        ctx.strokeStyle = '#f1f5f9';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(x, y);
-        ctx.lineTo(x + w, y);
-        ctx.stroke();
-    }
-
-    CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
-        this.beginPath();
-        this.moveTo(x + r, y);
-        this.arcTo(x + w, y, x + w, y + h, r);
-        this.arcTo(x + w, y + h, x, y + h, r);
-        this.arcTo(x, y + h, x, y, r);
-        this.arcTo(x, y, x + w, y, r);
-        this.closePath();
-        return this;
-    };
 
     async function compartirImagen() {
         try {
